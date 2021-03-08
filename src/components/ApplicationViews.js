@@ -13,6 +13,8 @@ import { AnimalForm } from "./animal/AnimalForm"
 import { AnimalDetail } from "./animal/AnimalDetail"
 import { EmployeeDetail } from "./employee/EmployeeDetail"
 import { LocationDetail } from "./location/LocationDetail"
+import { LocationForm } from "./location/LocationForm"
+import { EmployeeForm } from "./employee/EmployeeForm"
 
 
 export const ApplicationViews = () => {
@@ -34,7 +36,10 @@ export const ApplicationViews = () => {
                     <AnimalList />
                 </Route>
                 <Route exact path="/animals/create">
-                <AnimalForm />
+                    <AnimalForm />
+                </Route>
+                <Route path="/animals/edit/:animalId(\d+)">
+                    <AnimalForm />
                 </Route>
                     </CustomerProvider>
                 </LocationProvider>
@@ -47,6 +52,9 @@ export const ApplicationViews = () => {
                 <Route exact path="/locations/detail/:locationId(\d+)">
                     <LocationDetail />
                 </Route>
+                <Route path="/locations/edit/:locationId(\d+)">
+                    <LocationForm />
+                </Route>
             </LocationProvider>
 
             <CustomerProvider>
@@ -56,12 +64,17 @@ export const ApplicationViews = () => {
             </CustomerProvider>
 
             <EmployeeProvider>
-                <Route exact path="/employees">
-                    <EmployeeList />
-                </Route>
-                <Route exact path="/employees/detail/:employeeId(\d+)">
-                    <EmployeeDetail />
-                </Route>
+                <LocationProvider>
+                    <Route exact path="/employees">
+                        <EmployeeList />
+                    </Route>
+                    <Route exact path="/employees/detail/:employeeId(\d+)">
+                        <EmployeeDetail />
+                    </Route>
+                    <Route path="/employees/edit/:employeeId(\d+)">
+                        <EmployeeForm />
+                    </Route>
+                </LocationProvider>
             </EmployeeProvider>
         </>
     )

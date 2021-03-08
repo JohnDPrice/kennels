@@ -32,6 +32,10 @@ export const LocationDetail = () => {
       <div className="location__animals">{location.animals?.map(a => {
           return a.name
       }).join(", ")}</div>
+      <button onClick={() => {
+        history.push(`/locations/edit/${location.id}`)
+        }}>Edit
+      </button>
     </section>
   )
 }
