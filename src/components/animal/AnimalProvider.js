@@ -6,6 +6,7 @@ export const AnimalContext = createContext()
 // This component establishes what data can be used
 export const AnimalProvider = (props) => {
     const [animals, setAnimals] = useState([])
+    const [ searchTerms, setSearchTerms ] = useState("")
 
     const getAnimals = () => {
         return fetch("http://localhost:8088/animals?_expand=location")
@@ -50,7 +51,7 @@ export const AnimalProvider = (props) => {
         // You return a context provider which has the 'animals' state, 'getAnimals' function, anmd the 'addAnimal' function as keys. This allows any child elements to access them.
         return (
             <AnimalContext.Provider value={{
-                animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal
+                animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal, searchTerms, setSearchTerms
             }}>
                 {props.children}
             </AnimalContext.Provider>
